@@ -43,12 +43,12 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
-          command_timeout: 5m
+          command_timeout: 10m
           script: |
             aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 869435311503.dkr.ecr.us-east-1.amazonaws.com
             sudo kubectl set image deployment/devopstermproject devopstermproject=869435311503.dkr.ecr.us-east-1.amazonaws.com/devopstermproject:latest
             sudo kubectl rollout restart deployment/devopstermproject
-            sudo kubectl rollout status deployment/devopstermproject
+            sudo kubectl rollout status deployment/devopstermproject --timeout=8m
             pkill -f "kubectl port-forward" || true
             nohup sudo kubectl port-forward --address 0.0.0.0 service/devopstermproject-service 30080:3000 > /tmp/portforward.log 2>&1 &
             sleep 3
