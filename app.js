@@ -61,7 +61,7 @@ app.get('/', (req, res) => {
       </head>
       <body>
         <div class="card">
-          <h1>🚀 Node.js on Kubernetes - M.Abid Fahad  -  74230 <span class="badge">LIVE</span></h1>
+          <h1> DevOps Demo Video Attemp 2 - SAP ID 74230</h1>
           <div class="row">
             <span class="label">Timestamp</span>
             <span class="value">${timestamp}</span>
